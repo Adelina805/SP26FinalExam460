@@ -1,7 +1,7 @@
 # Development Log – The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Adelina Martinez
+**Student ID:** 827822314
 
 > Instructions: Write at least four dated entries. Required entry types are marked below.
 > Two to five sentences per entry is sufficient. Write entries as you go, not all in one
@@ -47,14 +47,14 @@ _Your entry here._
 
 > Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
 
-| Part | Estimated Hours |
-|---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part                           | Estimated Hours |
+| ------------------------------ | --------------- |
+| Part 1: Problem Analysis       |                 |
+| Part 2: Precomputation Design  |                 |
+| Part 3: Algorithm Correctness  |                 |
+| Part 4: Search Design          |                 |
+| Part 5: State and Search Space |                 |
+| Part 6: Pruning                |                 |
+| Part 7: Implementation         |                 |
+| README and DEVLOG writing      |                 |
+| **Total**                      |                 |

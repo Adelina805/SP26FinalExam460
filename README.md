@@ -1,7 +1,7 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Adelina Martinez
+**Student ID:** 827822314
 **Course:** CS 460 – Algorithms | Spring 2026
 
 > This README is your project documentation. Write it the way a developer would document
@@ -34,21 +34,21 @@
 > List the source node types as a bullet list. For each, one-line reason.
 
 | Source Node Type | Why it is a source |
-|---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| ---------------- | ------------------ |
+| _node type_      | _one-line reason_  |
+| _node type_      | _one-line reason_  |
 
 ### Part 2b: Distance Storage
 
 > Fill in the table. No prose required.
 
-| Property | Your answer |
-|---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Property                    | Your answer |
+| --------------------------- | ----------- |
+| Data structure name         |             |
+| What the keys represent     |             |
+| What the values represent   |             |
+| Lookup time complexity      |             |
+| Why O(1) lookup is possible |             |
 
 ### Part 2c: Precomputation Complexity
 
@@ -126,23 +126,23 @@ _Your answer here._
 > Document the three components of your search state as a table.
 > Variable names here must match exactly what you use in torchbearer.py.
 
-| Component | Variable name in code | Data type | Description |
-|---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Component                | Variable name in code | Data type | Description |
+| ------------------------ | --------------------- | --------- | ----------- |
+| Current location         |                       |           |             |
+| Relics already collected |                       |           |             |
+| Fuel cost so far         |                       |           |             |
 
 ### Part 5b: Data Structure for Visited Relics
 
 > Fill in the table.
 
-| Property | Your answer |
-|---|---|
-| Data structure chosen | |
+| Property                                    | Your answer      |
+| ------------------------------------------- | ---------------- |
+| Data structure chosen                       |                  |
 | Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Operation: mark a relic as collected        | Time complexity: |
+| Operation: unmark a relic (backtrack)       | Time complexity: |
+| Why this structure fits                     |                  |
 
 ### Part 5c: Worst-Case Search Space
 

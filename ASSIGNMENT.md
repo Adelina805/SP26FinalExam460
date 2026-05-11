@@ -1,4 +1,5 @@
 # CS 460 Algorithms: Final Programming Assignment
+
 ## The Torchbearer
 
 **Semester:** Spring 2026
@@ -53,7 +54,7 @@ implementation approach.
 After computing cheapest inter-location travel costs, suppose you have:
 
 | From \ To | B   | C   | D   | T   |
-|-----------|-----|-----|-----|-----|
+| --------- | --- | --- | --- | --- |
 | S         | 1   | 2   | 2   | --  |
 | B         | --  | 100 | 1   | 1   |
 | C         | 1   | --  | 100 | 1   |
@@ -78,20 +79,20 @@ your code implements. Graders cross-reference all three.
 
 The structure is:
 
-| Part | README Section | Function in torchbearer.py |
-|---|---|---|
-| 1: Problem Analysis | Part 1: Problem Analysis | `explain_problem()` |
-| 2a: Source Selection | Part 2a: Source Selection | `select_sources()` |
-| 2b: Distance Storage | Part 2b: Distance Storage | `run_dijkstra()` |
-| 2c: Complexity | Part 2c: Complexity | `precompute_distances()` |
-| 3: Correctness | Part 3: Correctness | `dijkstra_invariant_check()` |
-| 4: Search Design | Part 4: Search Design | `explain_search()` |
-| 5a: State | Part 5a: State Representation | `find_optimal_route()` |
-| 5b: Data Structure | Part 5b: Data Structure | `find_optimal_route()` |
-| 5c: Search Space | Part 5c: Search Space | `_explore()` |
-| 6a: Best-So-Far | Part 6a: Best-So-Far | `_explore()` |
-| 6b: Lower Bound | Part 6b: Lower Bound | `_explore()` |
-| 6c: Pruning Correctness | Part 6c: Pruning Correctness | `_explore()` |
+| Part                    | README Section                | Function in torchbearer.py   |
+| ----------------------- | ----------------------------- | ---------------------------- |
+| 1: Problem Analysis     | Part 1: Problem Analysis      | `explain_problem()`          |
+| 2a: Source Selection    | Part 2a: Source Selection     | `select_sources()`           |
+| 2b: Distance Storage    | Part 2b: Distance Storage     | `run_dijkstra()`             |
+| 2c: Complexity          | Part 2c: Complexity           | `precompute_distances()`     |
+| 3: Correctness          | Part 3: Correctness           | `dijkstra_invariant_check()` |
+| 4: Search Design        | Part 4: Search Design         | `explain_search()`           |
+| 5a: State               | Part 5a: State Representation | `find_optimal_route()`       |
+| 5b: Data Structure      | Part 5b: Data Structure       | `find_optimal_route()`       |
+| 5c: Search Space        | Part 5c: Search Space         | `_explore()`                 |
+| 6a: Best-So-Far         | Part 6a: Best-So-Far          | `_explore()`                 |
+| 6b: Lower Bound         | Part 6b: Lower Bound          | `_explore()`                 |
+| 6c: Pruning Correctness | Part 6c: Pruning Correctness  | `_explore()`                 |
 
 ---
 
@@ -99,13 +100,14 @@ The structure is:
 
 Create a **public GitHub repository** for this project and submit the repository URL on Canvas. All three files below must be present at the root of the repository. A missing file earns zero for its section.
 
-| File | Contents |
-|---|---|
-| `torchbearer.py` | Your complete implementation |
-| `README.md` | Written answers, one section per part |
-| `DEVLOG.md` | Development log with at least four dated entries |
+| File             | Contents                                         |
+| ---------------- | ------------------------------------------------ |
+| `torchbearer.py` | Your complete implementation                     |
+| `README.md`      | Written answers, one section per part            |
+| `DEVLOG.md`      | Development log with at least four dated entries |
 
 **Submission checklist before you paste the link on Canvas:**
+
 - Repository is set to public (graders must be able to access it without signing in)
 - All three files are at the root of the repo, not inside a subfolder
 - The link you submit goes to the repository, not to an individual file
@@ -119,8 +121,8 @@ Do not submit a zip file. Do not submit screenshots of code. Do not submit a pri
 
 ## Part 1: Understanding the Problem (6 points)
 
-*The Guild's cartographers have mapped every corridor. The Torchbearer's first problem is
-not reading the map, it is deciding what to do with it.*
+_The Guild's cartographers have mapped every corridor. The Torchbearer's first problem is
+not reading the map, it is deciding what to do with it._
 
 Document your understanding in `README.md` under **"Part 1: Problem Analysis"**.
 This section should read like a short developer note, not an essay.
@@ -140,8 +142,8 @@ The README template shows the exact format expected.
 
 ## Part 2: Precomputation Design (10 points)
 
-*Before the Torchbearer takes a single step, the engine pre-loads a map of the cheapest
-routes between every location it might ever care about.*
+_Before the Torchbearer takes a single step, the engine pre-loads a map of the cheapest
+routes between every location it might ever care about._
 
 Document your design in `README.md` under **"Part 2: Precomputation Design"** with
 sub-sections 2a, 2b, 2c. Use tables and bullet points. No prose paragraphs.
@@ -169,8 +171,8 @@ k = |M|. Single shortest-path run costs O(m log n).
 
 ## Part 3: Shortest-Path Correctness (12 points)
 
-*The engine only works if the distances it has are real. A wrong distance means the
-Torchbearer wastes fuel or never finds the exit.*
+_The engine only works if the distances it has are real. A wrong distance means the
+Torchbearer wastes fuel or never finds the exit._
 
 Document your understanding in `README.md` under **"Part 3: Algorithm Correctness"**
 with sub-sections 3a, 3b, 3c. Use bullets throughout. No paragraphs.
@@ -192,6 +194,7 @@ Do not copy the invariant text verbatim. One to two sentences per bullet.
 ### Part 3b: Invariant Maintenance (6 points)
 
 Three bullets in the README template, one per phase:
+
 - **Initialization:** why the invariant holds before the first iteration.
 - **Maintenance:** why finalizing the min-dist node is always correct. Your bullet must
   explicitly name nonnegative edge weights as part of the argument.
@@ -208,8 +211,8 @@ correct routing decisions by the Torchbearer's planner.
 
 ## Part 4: From Distances to Search (6 points)
 
-*The Torchbearer knows how much fuel every corridor costs. It still does not know which
-relic to go for first and that decision changes everything.*
+_The Torchbearer knows how much fuel every corridor costs. It still does not know which
+relic to go for first and that decision changes everything._
 
 Document your analysis in `README.md` under **"Part 4: Search Design"** with two
 sub-sections: "Why Greedy Fails" and "What the Algorithm Must Explore."
@@ -226,9 +229,9 @@ picks, what optimal picks, and why greedy loses. One to two sentences per bullet
 
 ## Part 5: State and Search Space (10 points)
 
-*Every step of the search, the engine needs to know exactly where it is, what it has
+_Every step of the search, the engine needs to know exactly where it is, what it has
 collected, and how much fuel it has burned. Without all three, it cannot make correct
-decisions.*
+decisions._
 
 Document your design in `README.md` under **"Part 5: State and Search Space"** with
 sub-sections 5a, 5b, 5c. Use tables and bullets throughout.
@@ -254,8 +257,8 @@ Two bullets: the worst-case count in terms of k = |M|, and a one-line justificat
 
 ## Part 6: Pruning (8 points)
 
-*A Torchbearer that explores every possible route wastes time the Guild does not have.
-The engine must cut deadend plans early without ever cutting the optimal plan.*
+_A Torchbearer that explores every possible route wastes time the Guild does not have.
+The engine must cut deadend plans early without ever cutting the optimal plan._
 
 Document your pruning design in `README.md` under **"Part 6: Pruning"** with sub-sections
 6a, 6b, 6c. Use the bullet formats shown in the README template.
@@ -283,6 +286,7 @@ guaranteed to never discard the optimal solution.
 Implement your solution in `torchbearer.py` using the provided starter template.
 
 **Rules:**
+
 - Implement every function marked `TODO`. Do not change any function signature.
 - Do not remove or rename required functions.
 - You may add private helper functions.
@@ -330,6 +334,7 @@ The References section must list any external resources consulted. If none, writ
 ## DEVLOG Requirements
 
 `DEVLOG.md` must contain at least **four dated entries** including:
+
 - An initial plan written before any code is written
 - At least one entry describing a bug or wrong assumption and how you resolved it
 - An entry after implementation is complete describing what you would change with more time
@@ -342,26 +347,26 @@ iterative work across multiple sessions.
 
 ## Grading Summary
 
-| Section | Points |
-|---|---|
-| Part 1: Problem Analysis (README) | 6 |
-| Part 2a: Source Selection (README) | 4 |
-| Part 2b: Distance Storage (README) | 3 |
-| Part 2c: Complexity (README) | 3 |
-| Part 3: Algorithm Correctness (README) | 12 |
-| Part 4: Search Design (README) | 6 |
-| Part 5a-c: State and Search Space (README) | 10 |
-| Part 6a-c: Pruning (README) | 8 |
-| `run_dijkstra` correctness (auto-graded) | 6 |
-| `precompute_distances` correctness (auto-graded) | 5 |
-| `find_optimal_route` + `_explore` correctness (auto-graded) | 10 |
-| `solve` pipeline correctness (auto-graded) | 5 |
-| Code quality: comments and naming (manual) | 6 |
-| Pruning comment accuracy (manual) | 4 |
-| README structure and completeness | 4 |
-| DEVLOG completeness | 4 |
-| Explanation functions present and non-empty | 4 |
-| **Total** | **100** |
+| Section                                                     | Points  |
+| ----------------------------------------------------------- | ------- |
+| Part 1: Problem Analysis (README)                           | 6       |
+| Part 2a: Source Selection (README)                          | 4       |
+| Part 2b: Distance Storage (README)                          | 3       |
+| Part 2c: Complexity (README)                                | 3       |
+| Part 3: Algorithm Correctness (README)                      | 12      |
+| Part 4: Search Design (README)                              | 6       |
+| Part 5a-c: State and Search Space (README)                  | 10      |
+| Part 6a-c: Pruning (README)                                 | 8       |
+| `run_dijkstra` correctness (auto-graded)                    | 6       |
+| `precompute_distances` correctness (auto-graded)            | 5       |
+| `find_optimal_route` + `_explore` correctness (auto-graded) | 10      |
+| `solve` pipeline correctness (auto-graded)                  | 5       |
+| Code quality: comments and naming (manual)                  | 6       |
+| Pruning comment accuracy (manual)                           | 4       |
+| README structure and completeness                           | 4       |
+| DEVLOG completeness                                         | 4       |
+| Explanation functions present and non-empty                 | 4       |
+| **Total**                                                   | **100** |
 
 ---
 
@@ -372,12 +377,8 @@ This assignment assesses your individual understanding of algorithm design and i
 - You may use course materials, lecture notes, and the assigned textbook.
 - You may not use generative AI tools to produce written answers or code for submission.
 - You may not share or copy code with other students.
-- You may discuss high-level concepts with classmates, but all writing and all code must
-  be your own.
+- You may discuss high-level concepts with classmates, but all writing and all code must be your own.
 
-Disclose any external resource in the References section: name the resource, identify which
-part it was used for, and explain how you verified the result. Failure to disclose is an
-academic integrity violation.
+Disclose any external resource in the References section: name the resource, identify which part it was used for, and explain how you verified the result. Failure to disclose is an academic integrity violation.
 
-I reserve the right to ask any student to explain their implementation verbally or in writing.
-Being unable to explain your own code is grounds for an academic integrity review.
+I reserve the right to ask any student to explain their implementation verbally or in writing. Being unable to explain your own code is grounds for an academic integrity review.
