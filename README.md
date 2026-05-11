@@ -4,26 +4,18 @@
 **Student ID:** 827822314
 **Course:** CS 460 – Algorithms | Spring 2026
 
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
-
 ---
 
 ## Part 1: Problem Analysis
 
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
+- ## **Why a single shortest-path run from S is not enough:**
+- For the torchbearer problem, a single Dijkstra run from S only gives the shortest distance from the entrance to other nodes, but it does not choose how to visit all relics and reach the exit. It also cannot decide on the order of relic to visit to achieve the minimum total cost.
 
-- **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+- ## **What decision remains after all inter-location costs are known:**
+- After all the inter-location costs are known, the remaining decision is to choose the order of what relic to visit all of them before going to the exit.
 
-- **What decision remains after all inter-location costs are known:**
-  _Your answer here._
-
-- **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+- ## **Why this requires a search over orders (one sentence):**
+- This requires a search over orders because choosing different visiting orders of the relics can cause different total fuel costs.
 
 ---
 
@@ -31,70 +23,56 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
-
-| Source Node Type | Why it is a source |
-| ---------------- | ------------------ |
-| _node type_      | _one-line reason_  |
-| _node type_      | _one-line reason_  |
+| Source Node Type | Why it is a source                                                                                      |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| Entrance node S  | The route starts here, so the planner needs shortest costs from S to each relic.                        |
+| Relic chambers   | After collecting a relic, the planner may need shortest costs from that relic to another relic or to T. |
 
 ### Part 2b: Distance Storage
 
-> Fill in the table. No prose required.
-
-| Property                    | Your answer |
-| --------------------------- | ----------- |
-| Data structure name         |             |
-| What the keys represent     |             |
-| What the values represent   |             |
-| Lookup time complexity      |             |
-| Why O(1) lookup is possible |             |
+| Property                    | Your answer                                           |
+| --------------------------- | ----------------------------------------------------- |
+| Data structure name         | Nested dictionary                                     |
+| What the keys represent     | outer key = source node; inner key = destination node |
+| What the values represent   | Shortest fuel cost from source to destination         |
+| Lookup time complexity      | O(1) average case                                     |
+| Why O(1) lookup is possible | Python dictionary lookups use hashing                 |
 
 ### Part 2c: Precomputation Complexity
 
-> State the total complexity and show the arithmetic. Two to three lines max.
-
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** k + 1
+- **Cost per run:** O(m log n)
+- **Total complexity:** O((k + 1)m log n)
+- **Justification (one line):** Dijkstra runs once from S and once from each of the k relics.
 
 ---
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
-
 ### Part 3a: What the Invariant Means
 
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
-
 - **For nodes already finalized (in S):**
-  _Your answer here._
+- The shortest path distance to these nodes is already final and will never change.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+- Their current distance is the shortest known path so far using only finalized nodes and still has the chance to improve / find a shorter path.
 
 ### Part 3b: Why Each Phase Holds
 
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
-
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+- For initialization, the invariant holds before iteration 1 because only the source has a distance of 0 and is correct because no shorter path exists.
+- All the other nodes start at infinity which means no paths have been discovered yet.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+- For maintenance, finalizing the node with the smallest distance is always correct because no shorter path can reach it later. It is the best possible choice.
+- This is guaranteed because all edge weights are nonnegative so any new path would only increase the distance positively.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+- For termination, the algorithm's completion guarantees that all reachable nodes have been finalized with their true shortest distances.
 
 ### Part 3c: Why This Matters for the Route Planner
 
-> One sentence connecting correct distances to correct routing decisions.
-
-_Your answer here._
+- This matters for the route planner because it will rely on these distances being correct so it can accurately compare the different relic visit orders and choose the minimum cost route.
 
 ---
 
