@@ -7,7 +7,7 @@ Student ID: 827822314
 
 INSTRUCTIONS
 ------------
-- Implement every function marked "to do".
+- Implement every function marked TODO.
 - Do not change any function signature.
 - Do not remove or rename required functions.
 - You may add helper functions.
@@ -31,10 +31,12 @@ def explain_problem():
     str
         Your Part 1 README answers, written as a string.
         Must match what you wrote in README Part 1.
-
-    TODO
     """
-    return "TODO"
+    return """
+    Why a single shortest-path run from S is not enough: For the torchbearer problem, a single Dijkstra run from S only gives the shortest distance from the entrance to other nodes, but it does not choose how to visit all relics and reach the exit. It also cannot decide on the order of relic to visit to achieve the minimum total cost.
+    What decision remains after all inter-location costs are known: After all the inter-location costs are known, the remaining decision is to choose the order of what relic to visit all of them before going to the exit.
+    Why this requires a search over orders (one sentence): This requires a search over orders because choosing different visiting orders of the relics can cause different total fuel costs.
+    """
 
 
 # =============================================================================
@@ -53,10 +55,20 @@ def select_sources(spawn, relics, exit_node):
     -------
     list[node]
         No duplicates. Order does not matter.
-
-    TODO
     """
-    pass
+    # Collect all nodes we need shortest paths from: spawn and each relic
+    sources = []
+
+    # Include the starting node
+    if spawn not in sources:
+        sources.append(spawn)
+
+    # Include each relic as a source for later route segments
+    for relic in relics:
+        if relic not in sources: # add each relic if not already in sources
+            sources.append(relic)
+
+    return sources # return sources
 
 
 def run_dijkstra(graph, source):
@@ -72,10 +84,39 @@ def run_dijkstra(graph, source):
     dict[node, float]
         Minimum cost from source to every node in graph.
         Unreachable nodes map to float('inf').
-
-    TODO
     """
-    pass
+    # Initialize all known nodes with infinite distance
+    dist = {node: float('inf') for node in graph}
+
+    # Ensure the source exists and starts at distance 0
+    if source not in dist:
+        dist[source] = float('inf')
+    dist[source] = 0
+
+    # Min-heap storing (current_cost, node)
+    heap = [(0, source)]
+
+    while heap:
+        cur_cost, u = heapq.heappop(heap)
+
+        # Ignore outdated entries that are no longer optimal
+        if cur_cost > dist.get(u, float('inf')):
+            continue
+
+        # Explore outgoing edges from current node (if u has no outgoing edges, use empty list)
+        for v, w in graph.get(u, []):
+            # Add neighbor to dist if it was not originally a key in graph
+            if v not in dist:
+                dist[v] = float('inf')
+
+            new_cost = cur_cost + w
+
+            # Relax edge if a shorter path is found
+            if new_cost < dist[v]:
+                dist[v] = new_cost
+                heapq.heappush(heap, (new_cost, v))
+
+    return dist
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -92,10 +133,13 @@ def precompute_distances(graph, spawn, relics, exit_node):
     dict[node, dict[node, float]]
         Nested structure supporting dist_table[u][v] lookups
         for every source u your design requires.
-
-    TODO
     """
-    pass
+    # Select all nodes we need shortest paths FROM (S and each relic)
+    sources = select_sources(spawn, relics, exit_node)
+    dist_table = {} # dist_table[src][v] will store shortest distance from src to v
+    for src in sources: # Run Dijkstra from each source node to compute all outgoing distances
+        dist_table[src] = run_dijkstra(graph, src)
+    return dist_table
 
 
 # =============================================================================

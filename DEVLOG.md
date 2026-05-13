@@ -17,12 +17,9 @@ Today I worked on README Parts 4-6 and focused on how the recursive search shoul
 
 ---
 
-## Entry 3 – 5/12/26: [Short description]
+## Entry 3 – 5/12/26: Directed Graph and Distance Table Testing
 
-> Two to five sentences Required. At least one entry must describe a bug, wrong assumption, or design change
-> you encountered. Describe what went wrong and how you resolved it.
-
-_Your entry here._
+While implementing Dijkstra and precomputation, I initially thought about some paths as if they could be reversed, which treated the graph like it was undirected. This caused incorrect assumptions about reachability between nodes. I fixed this by making sure I only followed outgoing edges in the adjacency list and tested with small directed examples. I also verified that unreachable nodes correctly return infinity in the distance table.
 
 ---
 
@@ -37,8 +34,6 @@ _Your entry here._
 
 ## Final Entry – 5/14/26: Time Estimate
 
-> Two to five sentences Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
-
 | Part                           | Estimated Hours |
 | ------------------------------ | --------------- |
 | Part 1: Problem Analysis       | 1               |
@@ -48,5 +43,5 @@ _Your entry here._
 | Part 5: State and Search Space |                 |
 | Part 6: Pruning                |                 |
 | Part 7: Implementation         |                 |
-| README and DEVLOG writing      | 1               |
+| README and DEVLOG writing      | 1.5             |
 | **Total**                      |                 |

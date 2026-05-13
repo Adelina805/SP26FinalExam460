@@ -96,11 +96,11 @@
 
 ### Part 5a: State Representation
 
-| Component                | Variable name in code | Data type           | Description                                       |
-| ------------------------ | --------------------- | ------------------- | ------------------------------------------------- |
-| Current location         | cur_location          | string / node label | The node where the search currently is.           |
-| Relics already collected | visited_relics        | set                 | The relics collected so far in the current route. |
-| Fuel cost so far         | fuel_so_far           | number              | The total fuel used by the current partial route. |
+| Component                | Variable name in code | Data type  | Description                                       |
+| ------------------------ | --------------------- | ---------- | ------------------------------------------------- |
+| Current location         | current_loc           | node label | The node where the search currently is.           |
+| Relics already collected | relics_visited_order  | list       | The relics collected so far in the current route. |
+| Fuel cost so far         | cost_so_far           | number     | The total fuel used by the current partial route. |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -129,7 +129,7 @@
 
 ### Part 6b: Lower Bound Estimation
 
-- **What information is available at the current state:** The current location (cur_location), the set of visited relics (visited_relics), the remaining relics, and the fuel cost so far (fuel_so_far).
+- **What information is available at the current state:** The current location, the list of visited relics, the remaining relics, and the fuel cost so far.
 - **What the lower bound accounts for:** The lower bound is based on the fuel cost so far, which represents the minimum possible cost of the current partial route.
 - **Why it never overestimates:** It never overestimates because all edge weights are nonnegative, so the total cost can only increase from the current fuel cost.
 
