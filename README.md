@@ -80,20 +80,15 @@
 
 ### Why Greedy Fails
 
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
-
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** picking the closest next relic can create a bad route later.
+- **Counter-example setup:** S starts, relics are A and B, and T is the exit with costs: S -> A = 1, S -> B = 2, A -> B = 100, A -> T = 1, B -> A = 1, B -> T = 1
+- **What greedy picks:** from S, greedy picks A because cost is 1. Then the most likely route is S -> A -> B -> T = 1 + 100 + 1 = 102
+- **What optimal picks:** The optimal route is S -> B -> A -> T = 2 + 1 + 1 = total cost 4
+- **Why greedy loses:** Greedy loses because it doesn't consider all possible relic orders and only picks the closest relic which leads to a worse route later than the optimal solution.
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
-
-- _Your answer here._
+- The algorithm must explore all possible relic orders, because the locally cheapest next relic may not lead to the globally cheapest full route.
 
 ---
 
@@ -101,33 +96,26 @@
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
-
-| Component                | Variable name in code | Data type | Description |
-| ------------------------ | --------------------- | --------- | ----------- |
-| Current location         |                       |           |             |
-| Relics already collected |                       |           |             |
-| Fuel cost so far         |                       |           |             |
+| Component                | Variable name in code | Data type           | Description                                       |
+| ------------------------ | --------------------- | ------------------- | ------------------------------------------------- |
+| Current location         | cur_location          | string / node label | The node where the search currently is.           |
+| Relics already collected | visited_relics        | set                 | The relics collected so far in the current route. |
+| Fuel cost so far         | fuel_so_far           | number              | The total fuel used by the current partial route. |
 
 ### Part 5b: Data Structure for Visited Relics
 
-> Fill in the table.
-
-| Property                                    | Your answer      |
-| ------------------------------------------- | ---------------- |
-| Data structure chosen                       |                  |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected        | Time complexity: |
-| Operation: unmark a relic (backtrack)       | Time complexity: |
-| Why this structure fits                     |                  |
+| Property                                    | Your answer                                                                           |
+| ------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Data structure chosen                       | set                                                                                   |
+| Operation: check if relic already collected | Time complexity: O(1) average                                                         |
+| Operation: mark a relic as collected        | Time complexity: O(1) average                                                         |
+| Operation: unmark a relic (backtrack)       | Time complexity: O(1) average                                                         |
+| Why this structure fits                     | A set makes it simple to check, add, and remove relics during recursive backtracking. |
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
-
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** k!
+- **Why:** With k relics, the search may need to try every possible ordering of the relics.
 
 ---
 
@@ -135,30 +123,22 @@
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
-
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** The algorithm tracks the best completed route cost found so far.
+- **When it is used:** It is used during the recursive search before continuing to explore a new branch.
+- **What it allows the algorithm to skip:** It allows the algorithm to skip exploring any branch where the current fuel cost is already greater than or equal to the best known cost.
 
 ### Part 6b: Lower Bound Estimation
 
-> Three bullets.
-
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** The current location (cur_location), the set of visited relics (visited_relics), the remaining relics, and the fuel cost so far (fuel_so_far).
+- **What the lower bound accounts for:** The lower bound is based on the fuel cost so far, which represents the minimum possible cost of the current partial route.
+- **Why it never overestimates:** It never overestimates because all edge weights are nonnegative, so the total cost can only increase from the current fuel cost.
 
 ### Part 6c: Pruning Correctness
 
-> One to two bullets. Explain why pruning is safe.
-
-- _Your answer here._
+- Pruning is safe because if the current fuel cost is already greater than or equal to the best known complete route, adding more nonnegative costs cannot make it any better. Therefore, pruning this branch cannot remove the optimal solution.
 
 ---
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
-
-- _Your references here._
+- Lecture notes only.

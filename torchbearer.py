@@ -7,7 +7,7 @@ Student ID: 827822314
 
 INSTRUCTIONS
 ------------
-- Implement every function marked TODO.
+- Implement every function marked "to do".
 - Do not change any function signature.
 - Do not remove or rename required functions.
 - You may add helper functions.
