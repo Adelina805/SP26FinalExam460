@@ -153,11 +153,34 @@ def dijkstra_invariant_check():
     str
         Your Part 3 README answers, written as a string.
         Must match what you wrote in README Part 3.
-
-    TODO
     """
-    return "TODO"
+    return """
+    Part 3: Algorithm Correctness
 
+    Part 3a: What the Invariant Means
+
+    For nodes already finalized (in S):
+    The shortest path distance to these nodes is already final and will never change.
+
+    For nodes not yet finalized (not in S):
+    Their current distance is the shortest known path so far using only finalized nodes and still has the chance to improve / find a shorter path.
+
+    Part 3b: Why Each Phase Holds
+
+    Initialization : why the invariant holds before iteration 1:
+    For initialization, the invariant holds before iteration 1 because only the source has a distance of 0 and is correct because no shorter path exists.
+    All the other nodes start at infinity which means no paths have been discovered yet.
+
+    Maintenance : why finalizing the min-dist node is always correct:
+    For maintenance, finalizing the node with the smallest distance is always correct because no shorter path can reach it later. It is the best possible choice.
+    This is guaranteed because all edge weights are nonnegative so any new path would only increase the distance positively.
+
+    Termination : what the invariant guarantees when the algorithm ends:
+    For termination, the algorithm's completion guarantees that all reachable nodes have been finalized with their true shortest distances.
+
+    Part 3c: Why This Matters for the Route Planner
+    This matters for the route planner because it will rely on these distances being correct so it can accurately compare the different relic visit orders and choose the minimum cost route.
+    """
 
 # =============================================================================
 # PART 4
@@ -170,11 +193,22 @@ def explain_search():
     str
         Your Part 4 README answers, written as a string.
         Must match what you wrote in README Part 4.
-
-    TODO
     """
-    return "TODO"
+    return """
+    Part 4: Search Design
 
+    Why Greedy Fails
+
+    - The failure mode: picking the closest next relic can create a bad route later.
+    - Counter-example setup: S starts, relics are A and B, and T is the exit with costs: S -> A = 1, S -> B = 2, A -> B = 100, A -> T = 1, B -> A = 1, B -> T = 1
+    - What greedy picks: from S, greedy picks A because cost is 1. Then the most likely route is S -> A -> B -> T = 1 + 100 + 1 = 102
+    - What optimal picks: The optimal route is S -> B -> A -> T = 2 + 1 + 1 = total cost 4
+    - Why greedy loses: Greedy loses because it doesn't consider all possible relic orders and only picks the closest relic which leads to a worse route later than the optimal solution.
+
+    What the Algorithm Must Explore
+
+    The algorithm must explore all possible relic orders, because the locally cheapest next relic may not lead to the globally cheapest full route.
+    """
 
 # =============================================================================
 # PARTS 5 + 6

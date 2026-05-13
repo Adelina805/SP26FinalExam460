@@ -17,13 +17,25 @@ Today I worked on README Parts 4-6 and focused on how the recursive search shoul
 
 ---
 
-## Entry 3 – 5/12/26: Directed Graph and Distance Table Testing
+## Entry 3 – 5/13/26: Directed Graph and Distance Table Testing
 
 While implementing Dijkstra and precomputation, I initially thought about some paths as if they could be reversed, which treated the graph like it was undirected. This caused incorrect assumptions about reachability between nodes. I fixed this by making sure I only followed outgoing edges in the adjacency list and tested with small directed examples. I also verified that unreachable nodes correctly return infinity in the distance table.
 
 ---
 
-## Entry 4 – 5/13/26: Post-Implementation Reflection
+## Entry 4 – 5/13/26: Explanation Functions and Consistency Check
+
+Today I worked on implementing the explanation functions for Part 3 and 4. I wanted to make sure they matched exactly what I wrote in the README and I had to be careful to keep the wording consistent so the grader can clearly see the connection between my written answers and my code. This step was helpful because it forced me to double-check my understanding of Dijkstra’s correctness and why greedy approaches fail for this problem. It also made me verify that my earlier design decisions still aligned with the implementation before moving on to the recursive search.
+
+---
+
+## Entry 5 – 5/13/26: []
+
+_Your entry here._
+
+---
+
+## Entry 6 – 5/14/26: Post-Implementation Reflection
 
 > Two to five sentences Required. Written after your implementation is complete. Describe what you would
 > change or improve given more time.
@@ -37,11 +49,11 @@ _Your entry here._
 | Part                           | Estimated Hours |
 | ------------------------------ | --------------- |
 | Part 1: Problem Analysis       | 1               |
-| Part 2: Precomputation Design  |                 |
-| Part 3: Algorithm Correctness  |                 |
-| Part 4: Search Design          |                 |
+| Part 2: Precomputation Design  | 2.5             |
+| Part 3: Algorithm Correctness  | 0.3             |
+| Part 4: Search Design          | 0.3             |
 | Part 5: State and Search Space |                 |
 | Part 6: Pruning                |                 |
 | Part 7: Implementation         |                 |
-| README and DEVLOG writing      | 1.5             |
+| README and DEVLOG writing      | 2               |
 | **Total**                      |                 |
