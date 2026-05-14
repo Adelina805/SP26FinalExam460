@@ -35,12 +35,9 @@ I worked on connecting the precomputed distance table to the recursive search. I
 
 ---
 
-## Entry 6 – 5/14/26: Post-Implementation Reflection
+## Entry 6 – 5/13/26: Post-Implementation Reflection
 
-> Two to five sentences Required. Written after your implementation is complete. Describe what you would
-> change or improve given more time.
-
-_Your entry here._
+After finishing everything, I think my approach works and the code makes sense overall. The precomputation part with Dijkstra was pretty straightforward, but the recursive search took more time to get right and I honestly struggled in it for a while. If I had more time, I would try to improve the pruning since right now it only checks the current cost, and I feel like that could be better. I would also test more edge cases and clean up some of the comments. Overall, this project helped me understand how shortest path and search problems can work together.
 
 ---
 
@@ -52,8 +49,8 @@ _Your entry here._
 | Part 2: Precomputation Design  | 2.5             |
 | Part 3: Algorithm Correctness  | 0.3             |
 | Part 4: Search Design          | 0.3             |
-| Part 5: State and Search Space |                 |
-| Part 6: Pruning                |                 |
-| Part 7: Implementation         |                 |
+| Part 5: State and Search Space | 1.5             |
+| Part 6: Pruning                | 1               |
+| Part 7: Implementation         | 3               |
 | README and DEVLOG writing      | 2               |
-| **Total**                      |                 |
+| **Total**                      | 11.6            |

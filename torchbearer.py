@@ -65,10 +65,10 @@ def select_sources(spawn, relics, exit_node):
 
     # Include each relic as a source for later route segments
     for relic in relics:
-        if relic not in sources: # add each relic if not already in sources
+        if relic not in sources:
             sources.append(relic)
 
-    return sources # return sources
+    return sources
 
 
 def run_dijkstra(graph, source):
