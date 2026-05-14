@@ -29,9 +29,9 @@ Today I worked on implementing the explanation functions for Part 3 and 4. I wan
 
 ---
 
-## Entry 5 – 5/13/26: []
+## Entry 5 – 5/13/26: Recursive Search and Pruning
 
-_Your entry here._
+I worked on connecting the precomputed distance table to the recursive search. I used a set for the remaining relics so the search can remove a relic before recursing and add it back during backtracking. The main thing I focused on was making sure the base case adds the cost from the last relic to the exit. I also added best-so-far pruning so branches that cannot beat the current best route are skipped safely.
 
 ---
 

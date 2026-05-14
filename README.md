@@ -104,13 +104,13 @@
 
 ### Part 5b: Data Structure for Visited Relics
 
-| Property                                    | Your answer                                                                           |
-| ------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Data structure chosen                       | set                                                                                   |
-| Operation: check if relic already collected | Time complexity: O(1) average                                                         |
-| Operation: mark a relic as collected        | Time complexity: O(1) average                                                         |
-| Operation: unmark a relic (backtrack)       | Time complexity: O(1) average                                                         |
-| Why this structure fits                     | A set makes it simple to check, add, and remove relics during recursive backtracking. |
+| Property                                    | Your answer                                                                                                             |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Data structure chosen                       | set                                                                                                                     |
+| Operation: check if relic already collected | Time complexity: O(1) average                                                                                           |
+| Operation: mark a relic as collected        | Time complexity: O(1) average                                                                                           |
+| Operation: unmark a relic (backtrack)       | Time complexity: O(1) average                                                                                           |
+| Why this structure fits                     | A set is used to track remaining relics, allowing fast membership checks and easy removal/addition during backtracking. |
 
 ### Part 5c: Worst-Case Search Space
 

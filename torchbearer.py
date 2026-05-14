@@ -231,10 +231,20 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
     tuple[float, list[node]]
         (minimum_fuel_cost, ordered_relic_list)
         Returns (float('inf'), []) if no valid route exists.
-
-    TODO
     """
-    pass
+    # Initialize best as a mutable container so _explore can update it
+    best = [float('inf'), []]
+
+    # Use a set for relics_remaining as required by the README
+    relics_remaining = set(relics)
+    relics_visited_order = []
+    cost_so_far = 0
+
+    # Start recursive exploration from the spawn
+    _explore(dist_table, spawn, relics_remaining, relics_visited_order,
+             cost_so_far, exit_node, best)
+
+    return (best[0], best[1])
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -259,14 +269,45 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     None
         Updates best in place.
 
-    TODO
     Implement: base case, pruning, recursive case, backtracking.
 
     REQUIRED: Add a 1-2 sentence comment near your pruning condition
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    # Pruning: if current partial cost already exceeds best, stop exploring.
+    # Because all future edge costs are nonnegative, this branch can only get more expensive.
+    # So if it already costs at least best[0], it cannot become the optimal route.
+    if cost_so_far >= best[0]:
+        return
+
+    # Base case: no relics left to visit, try to go to the exit
+    if not relics_remaining:
+        exit_cost = dist_table.get(current_loc, {}).get(exit_node, float('inf'))
+        total_cost = cost_so_far + exit_cost
+        # If exit is reachable and this route is better, update best
+        if exit_cost != float('inf') and total_cost < best[0]:
+            best[0] = total_cost
+            best[1] = list(relics_visited_order)
+        return
+
+    # Recursive case: try visiting each remaining relic next
+    for relic in list(relics_remaining):
+        travel_cost = dist_table.get(current_loc, {}).get(relic, float('inf'))
+        # Skip unreachable relic from current location
+        if travel_cost == float('inf'):
+            continue
+
+        # Choose this relic and recurse
+        relics_remaining.remove(relic)
+        relics_visited_order.append(relic)
+
+        _explore(dist_table, relic, relics_remaining, relics_visited_order,
+                 cost_so_far + travel_cost, exit_node, best)
+
+        # Backtrack
+        relics_visited_order.pop()
+        relics_remaining.add(relic)
 
 
 # =============================================================================
@@ -287,10 +328,11 @@ def solve(graph, spawn, relics, exit_node):
     tuple[float, list[node]]
         (minimum_fuel_cost, ordered_relic_list)
         Returns (float('inf'), []) if no valid route exists.
-
-    TODO
     """
-    pass
+    # Precompute shortest distances from spawn and each relic
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+    # Find the optimal route using the recursive search
+    return find_optimal_route(dist_table, spawn, relics, exit_node)
 
 
 # =============================================================================
@@ -355,7 +397,6 @@ def _run_tests():
     print("  Test 5 passed  explanation functions are non-empty")
 
     print("\nAll provided tests passed.")
-
 
 if __name__ == "__main__":
     _run_tests()
